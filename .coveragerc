@@ -1,0 +1,5 @@
+[run]
+include = input_mocker/*
+
+# see <https://lautaportti.wordpress.com/2011/05/07/test-coverage-analysis/>
+branch = True
