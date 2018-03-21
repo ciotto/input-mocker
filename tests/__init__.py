@@ -28,8 +28,7 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
             self.assertTimeout(self._input, raise_exception=True)
 
     def test_sys_stdin_readline(self):
-        mocker = InputMocker()
-        with mocker.patch():
+        with InputMocker():
             results = []
             loops = 10
             for i in range(0, loops):
@@ -40,8 +39,7 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
 
         self.assertTimeout(self._input)
 
-        mocker = InputMocker(answers=['foo', 'bar'])
-        with mocker.patch():
+        with InputMocker(answers=['foo', 'bar']):
             results = []
             loops = 10
             for i in range(0, loops):
@@ -52,8 +50,7 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
 
         self.assertTimeout(self._input)
 
-        mocker = InputMocker(random=True)
-        with mocker.patch():
+        with InputMocker(random=True):
             results = []
             loops = 10
             for i in range(0, loops):
@@ -63,8 +60,7 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
             self.assertNotEqual(results, ['y', 'n'] * int(loops / 2))
 
     def test_input_mocker(self):
-        mocker = InputMocker()
-        with mocker.patch():
+        with InputMocker():
             results = []
             loops = 10
             for i in range(0, loops):
@@ -76,8 +72,7 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
         self.assertTimeout(self._input)
 
     def test_external_module(self):
-        mocker = InputMocker()
-        with mocker.patch():
+        with InputMocker():
             results = []
             loops = 10
             for i in range(0, loops):

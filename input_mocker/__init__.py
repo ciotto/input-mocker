@@ -24,11 +24,9 @@ class InputMocker:
         self.index += 1
         return r
 
-    def patch(self):
-        return self
-
     def __enter__(self):
         p = self
+
         class FileMock:
             def readline(self):
                 return p.get_answer()
@@ -80,7 +78,7 @@ def patch(*args, **kwargs):
 
     def patch_decorator(func):
         def func_patched(*a, **k):
-            with mocker.patch():
+            with mocker:
                 func(*a, **k)
         return func_patched
     return patch_decorator
