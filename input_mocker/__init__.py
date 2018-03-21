@@ -17,12 +17,12 @@ class InputMocker:
 
     def get_input(self):
         if self.random:
-            return choice(self.inputs)
+            return str(choice(self.inputs))
         if self.index >= len(self.inputs):
             self.index = 0
         r = self.inputs[self.index]
         self.index += 1
-        return r
+        return str(r)
 
     def __enter__(self):
         p = self
