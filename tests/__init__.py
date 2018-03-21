@@ -102,3 +102,13 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
             results.append(result)
 
         self.assertEqual(results, ['y', 'n'] * int(loops / 2))
+
+    @input_mocker.patch(inputs=['foo', 'bar'])
+    def test_decorator_with_parameters(self):
+        results = []
+        loops = 10
+        for i in range(0, loops):
+            result = self.assertNotTimeout(_input)
+            results.append(result)
+
+        self.assertEqual(results, ['foo', 'bar'] * int(loops / 2))
