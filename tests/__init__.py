@@ -23,7 +23,6 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
         self.assertEqual(result.geturl(), u'https://foo.bar')
 
     def test_assert_timeout_exception(self):
-        string = 'Foo Bar'
         with self.assertRaises(TimeoutError):
             self.assertTimeout(self._input, raise_exception=True)
 
