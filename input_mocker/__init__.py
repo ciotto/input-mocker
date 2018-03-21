@@ -4,10 +4,10 @@ import sys
 
 
 class InputMocker:
-    def __init__(self, answers=None, random=False):
-        if not answers:
-            answers = ['y', 'n']
-        self.answers = answers
+    def __init__(self, inputs=None, random=False):
+        if not inputs:
+            inputs = ['y', 'n']
+        self.inputs = inputs
         self.index = 0
         self.random = random
         self.prompts = []
@@ -15,12 +15,12 @@ class InputMocker:
         self._patches = []
         self.stdin = None
 
-    def get_answer(self):
+    def get_input(self):
         if self.random:
-            return choice(self.answers)
-        if self.index >= len(self.answers):
+            return choice(self.inputs)
+        if self.index >= len(self.inputs):
             self.index = 0
-        r = self.answers[self.index]
+        r = self.inputs[self.index]
         self.index += 1
         return r
 
@@ -29,7 +29,7 @@ class InputMocker:
 
         class FileMock:
             def readline(self):
-                return p.get_answer()
+                return p.get_input()
         
         self.stdin = sys.stdin
         sys.stdin = FileMock()

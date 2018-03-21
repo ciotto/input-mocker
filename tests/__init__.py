@@ -38,7 +38,7 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
 
         self.assertTimeout(self._input)
 
-        with InputMocker(answers=['foo', 'bar']):
+        with InputMocker(inputs=['foo', 'bar']):
             results = []
             loops = 10
             for i in range(0, loops):
