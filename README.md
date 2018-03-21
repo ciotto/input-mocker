@@ -48,7 +48,7 @@ If you want to get random response initialize instance with `random=True` parami
 
 ```
 >>> from input_mocker import InputMocker
->>> with InputMocker():
+>>> with InputMocker(random=True):
 ...    raw_input()
 ...    raw_input()
 ...    raw_input()
