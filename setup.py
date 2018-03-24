@@ -4,7 +4,7 @@
 from setuptools import find_packages, setup
 import os
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 github_url = 'https://github.com/ciotto'
 package_name = 'input-mocker'
@@ -28,7 +28,7 @@ setup(
     author='Ciotto',
     author_email='info@ci8.it',
     url='%s/%s' % (github_url, package_name, ),
-    download_url='%s/%s/archive/%s.tar.gz' % (github_url, package_name, __version__, ),
+    download_url='%s/%s/archive/v%s.tar.gz' % (github_url, package_name, __version__, ),
     keywords=['tests', 'prompt', 'input', 'raw_input', 'mock'],
     install_requires=[
         'timeout-decorator >= 0.4, < 1.0',
