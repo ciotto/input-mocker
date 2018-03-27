@@ -4,7 +4,7 @@
 from setuptools import find_packages, setup
 import os
 
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 
 github_url = 'https://github.com/ciotto'
 package_name = 'input-mocker'
