@@ -70,18 +70,6 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
 
         self.assertTimeout(self._input)
 
-    def test_non_string(self):
-        with InputMocker(inputs=[1, 2]):
-            results = []
-            loops = 10
-            for i in range(0, loops):
-                result = self.assertNotTimeout(self._input)
-                results.append(result)
-
-            self.assertEqual(results, ['1', '2'] * int(loops / 2))
-
-        self.assertTimeout(self._input)
-
     def test_external_module(self):
         with InputMocker():
             results = []
@@ -92,6 +80,23 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
 
             self.assertEqual(results, ['y', 'n'] * int(loops / 2))
         self.assertTimeout(_input)
+
+    def test_raise_exception(self):
+        self.assertIsNotNone(InputMocker(['foo']))
+        self.assertIsNotNone(InputMocker([u'foo']))
+
+        with self.assertRaises(ValueError):
+            InputMocker(['\n'])
+        with self.assertRaises(ValueError):
+            InputMocker(['foo\n'])
+        with self.assertRaises(ValueError):
+            InputMocker(['foo', 'bar\n'])
+        with self.assertRaises(ValueError):
+            InputMocker(['foo', 1])
+        with self.assertRaises(ValueError):
+            InputMocker(['foo', ['bar']])
+        with self.assertRaises(ValueError):
+            InputMocker(['foo', {'bar': 'foo'}])
 
     @input_mocker.patch()
     def test_decorator(self):

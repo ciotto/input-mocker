@@ -5,7 +5,13 @@ import sys
 
 class InputMocker:
     def __init__(self, inputs=None, random=False):
-        if not inputs:
+        if inputs:
+            for i in inputs:
+                if not isinstance(i, str) and not isinstance(i, unicode):
+                    raise ValueError('%s is not allowed as input' % type(i))
+                if os.linesep in i:
+                    raise ValueError('Line separator char not allowed in input string')
+        else:
             inputs = ['y', 'n']
         self.inputs = inputs
         self.index = 0
