@@ -1,6 +1,7 @@
 import os
 from random import choice
 from timeout_decorator import timeout_decorator, TimeoutError
+import six
 import sys
 
 
@@ -8,7 +9,7 @@ class InputMocker:
     def __init__(self, inputs=None, random=False):
         if inputs:
             for i in inputs:
-                if not isinstance(i, str) and not isinstance(i, unicode):
+                if not isinstance(i, six.string_types):
                     raise ValueError('%s is not allowed as input' % type(i))
                 if os.linesep in i:
                     raise ValueError('Line separator char not allowed in input string')
