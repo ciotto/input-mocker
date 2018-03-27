@@ -1,3 +1,4 @@
+import os
 from random import choice
 from timeout_decorator import timeout_decorator, TimeoutError
 import sys
@@ -35,7 +36,7 @@ class InputMocker:
 
         class FileMock:
             def readline(self):
-                return p.get_input()
+                return p.get_input() + os.linesep
         
         self.stdin = sys.stdin
         sys.stdin = FileMock()

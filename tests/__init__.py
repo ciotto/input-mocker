@@ -34,7 +34,7 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
                 result = self.assertNotTimeout(sys.stdin.readline)
                 results.append(result)
 
-            self.assertEqual(results, ['y', 'n'] * int(loops / 2))
+            self.assertEqual(results, ['y\n', 'n\n'] * int(loops / 2))
 
         self.assertTimeout(self._input)
 
@@ -45,7 +45,7 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
                 result = self.assertNotTimeout(sys.stdin.readline)
                 results.append(result)
 
-            self.assertEqual(results, ['foo', 'bar'] * int(loops / 2))
+            self.assertEqual(results, ['foo\n', 'bar\n'] * int(loops / 2))
 
         self.assertTimeout(self._input)
 
@@ -56,7 +56,7 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
                 result = self.assertNotTimeout(sys.stdin.readline)
                 results.append(result)
 
-            self.assertNotEqual(results, ['y', 'n'] * int(loops / 2))
+            self.assertNotEqual(results, ['y\n', 'n\n'] * int(loops / 2))
 
     def test_input_mocker(self):
         with InputMocker():
@@ -80,6 +80,12 @@ class TestInputMocker(unittest.TestCase, TimeoutTestCaseMixin):
 
             self.assertEqual(results, ['y', 'n'] * int(loops / 2))
         self.assertTimeout(_input)
+
+    def test_empty_string(self):
+        with InputMocker(['']):
+            result = self.assertNotTimeout(_input)
+
+            self.assertEqual(result, '')
 
     def test_raise_exception(self):
         self.assertIsNotNone(InputMocker(['foo']))
